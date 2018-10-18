@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Detail Pegawai</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment"></nav>
+		
+		<h1 th:text="'Lihat Data Pegawai - ' + ${pegawai.nip}"></h1>
+		
+		<br>
+		
+		<h5 th:text="'NIP: ' + ${pegawai.nip}"></h5>
+		<h5 th:text="'Nama: ' + ${pegawai.nama}"></h5>
+		<h5 th:text="'Tempat Lahir: ' + ${pegawai.tempatLahir}"></h5>
+		<h5 th:text="'Tanggal Lahir: ' + ${pegawai.tanggalLahir}"></h5>
+		<h5 th:text="'Tahun Masuk: ' + ${pegawai.tahunMasuk}"></h5>
+		<h5 th:text="'Nama Instansi: ' + ${pegawai.instansi.nama}"></h5>
+		
+		<div th:each="referensi : ${pegawai.listJabatanPegawai}">
+			<h5 th:if="${referensi.pegawai.id} == ${pegawai.id}" th:text="'Jabatan: ' + ${referensi.jabatan.nama}"></h5>
+			<h5 th:if="${referensi.pegawai.id} == ${pegawai.id}" th:text="'Gaji: ' + ${referensi.jabatan.gajiPokok}"></h5>
+		</div>
+		
+		
+		
+		<form th:action="@{/}">
+			<button type="submit">Ubah</button>
+		</form>
+		
+		
+	</body>
+</html>
