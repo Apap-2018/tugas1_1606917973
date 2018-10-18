@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import com.apap.tugas1.model.PegawaiModel;
 
-//FlightService
+//PegawaiService
 
 public interface PegawaiService {
 	PegawaiModel getPegawaiDetailByNip(String nip);

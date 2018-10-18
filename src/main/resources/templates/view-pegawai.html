@@ -6,7 +6,7 @@
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 	</head>
 	<body>
-		<nav th:replace="fragments/fragment"></nav>
+		<nav th:replace="fragments/fragment :: navbar"></nav>
 		
 		<h1 th:text="'Lihat Data Pegawai - ' + ${pegawai.nip}"></h1>
 		
