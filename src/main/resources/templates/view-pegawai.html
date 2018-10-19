@@ -10,22 +10,48 @@
 		
 		<h1 th:text="'Lihat Data Pegawai - ' + ${pegawai.nip}"></h1>
 		
-		<br>
+		<table>
+			<tr>
+				<td width="200" height="50">NIP</td>
+				<td th:text="${pegawai.nip}"></td>
+			</tr>
+			<tr>
+				<td height="50">Nama</td>
+				<td th:text="${pegawai.nama}"></td>
+			</tr>
+			<tr>
+				<td height="50">Tempat Lahir</td>
+				<td th:text="${pegawai.tempatLahir}"></td>
+			</tr>
+			<tr>
+				<td height="50">Tanggal Lahir</td>
+				<td th:text="${pegawai.tanggalLahir}"></td>
+			</tr>
+			<tr>
+				<td height="50">Tahun Masuk</td>
+				<td th:text="${pegawai.tahunMasuk}"></td>
+			</tr>
+			<tr>
+				<td height="50">Nama Instansi</td>
+				<td th:text="${namaInstansiPegawai}"></td>
+			</tr>
+			<tr>
+				<td style="vertical-align: top; text-align: left;" height="50">Jabatan</td>
+				<td style="vertical-align: top;">
+					<span th:each="jabatan : ${setJabatan}">
+						<p th:text="${jabatan.nama}"></p>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td height="50">Gaji</td>
+				<td th:text="${gaji}"></td>
+			</tr>
+		</table>
 		
-		<h5 th:text="'NIP: ' + ${pegawai.nip}"></h5>
-		<h5 th:text="'Nama: ' + ${pegawai.nama}"></h5>
-		<h5 th:text="'Tempat Lahir: ' + ${pegawai.tempatLahir}"></h5>
-		<h5 th:text="'Tanggal Lahir: ' + ${pegawai.tanggalLahir}"></h5>
-		<h5 th:text="'Tahun Masuk: ' + ${pegawai.tahunMasuk}"></h5>
-		<h5 th:text="'Nama Instansi: ' + ${pegawai.instansi.nama}"></h5>
-		
-		<div th:each="referensi : ${pegawai.listJabatanPegawai}">
-			<h5 th:if="${referensi.pegawai.id} == ${pegawai.id}" th:text="'Jabatan: ' + ${referensi.jabatan.nama}"></h5>
-			<h5 th:if="${referensi.pegawai.id} == ${pegawai.id}" th:text="'Gaji: ' + ${referensi.jabatan.gajiPokok}"></h5>
-		</div>
-	
-		<form th:action="@{/}">
-			<button type="submit" class="btn btn-primary">Ubah</button>
+		<form action="/pegawai/ubah" method="get">
+			<input type="hidden" name="nip" th:value="${pegawai.nip}">
+			<input type="submit" value="Ubah">
 		</form>
 		
 	</body>

@@ -10,7 +10,7 @@ public interface JabatanService {
 	JabatanModel getJabatanDetailById(long id);
 	List<JabatanModel> getAll();
 	JabatanModel updateJabatan(long id, String nama, String deskripsi, double gajiPokok);
-	JabatanModel deleteJabatan(long id);
+	JabatanModel deleteJabatanById(long id);
 	
 }
 

@@ -3,7 +3,6 @@ package com.apap.tugas1.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,7 +31,7 @@ public class ProvinsiModel implements Serializable {
 	
 	@NotNull
 	@Column(name = "presentase_tunjangan", nullable = false)
-	private double presentaseTunjungan;
+	private double presentaseTunjangan;
 	
 	@OneToMany(mappedBy = "provinsi", fetch = FetchType.LAZY)
 	private List<InstansiModel> listInstansi = new ArrayList<InstansiModel>();
@@ -53,12 +52,12 @@ public class ProvinsiModel implements Serializable {
 		this.nama = nama;
 	}
 
-	public double getPresentaseTunjungan() {
-		return presentaseTunjungan;
+	public double getPresentaseTunjangan() {
+		return presentaseTunjangan;
 	}
 
-	public void setPresentaseTunjungan(double presentaseTunjungan) {
-		this.presentaseTunjungan = presentaseTunjungan;
+	public void setPresentaseTunjungan(double presentaseTunjangan) {
+		this.presentaseTunjangan = presentaseTunjangan;
 	}
 
 	public List<InstansiModel> getListInstansi() {

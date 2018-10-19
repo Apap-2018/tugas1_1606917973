@@ -14,15 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class JabatanServiceImpl implements JabatanService{
+	
 	@Autowired
 	private JabatanDb jabatanDb;
-	
-	/**
-	@Override
-	public PilotModel getPilotDetailByLicenseNumber(String licenseNumber) {
-		return pilotDb.findByLicenseNumber(licenseNumber);
-	}
-	*/
 	
 	@Override
 	public JabatanModel getJabatanDetailById(long id) {
@@ -42,7 +36,7 @@ public class JabatanServiceImpl implements JabatanService{
 	}
 	
 	@Override
-	public JabatanModel deleteJabatan(long id) {
+	public JabatanModel deleteJabatanById(long id) {
 		JabatanModel deleted = jabatanDb.findById(id);
 		jabatanDb.delete(jabatanDb.findById(id));
 		return deleted;

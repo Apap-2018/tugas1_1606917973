@@ -3,9 +3,7 @@ package com.apap.tugas1.model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -65,8 +62,24 @@ public class PegawaiModel implements Serializable {
 	@JsonIgnore
 	private InstansiModel instansi;
 	
-	@OneToMany(mappedBy = "pegawai", fetch = FetchType.LAZY)
-	private List<JabatanPegawaiModel> listJabatanPegawai = new ArrayList<JabatanPegawaiModel>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "jabatan_pegawai", joinColumns = { @JoinColumn(name = "id_pegawai") }, inverseJoinColumns = { @JoinColumn(name = "id_jabatan") })
+	private List<JabatanModel> jabatan = new ArrayList<JabatanModel>();
+	
+	public Integer getGaji() {
+		InstansiModel instansiPegawai = this.getInstansi();
+		List<JabatanModel> setJabatan = this.getJabatan();
+		Double gajiPegawai = 0.0;
+		for (JabatanModel jabatan : setJabatan) {
+			Double gajiPokok = jabatan.getGajiPokok();
+			Double persenGaji = instansiPegawai.getProvinsi().getPresentaseTunjangan();
+			Double hasilHitungGaji = (gajiPokok + (persenGaji * gajiPokok / 100));
+			if (hasilHitungGaji > gajiPegawai) {
+				gajiPegawai = hasilHitungGaji;
+			}
+		}
+		return gajiPegawai.intValue();
+	}
 
 	public long getId() {
 		return id;
@@ -124,12 +137,12 @@ public class PegawaiModel implements Serializable {
 		this.instansi = instansi;
 	}
 
-	public List<JabatanPegawaiModel> getListJabatanPegawai() {
-		return listJabatanPegawai;
+	public List<JabatanModel> getJabatan() {
+		return jabatan;
 	}
 
-	public void setListJabatanPegawai(List<JabatanPegawaiModel> listJabatanPegawai) {
-		this.listJabatanPegawai = listJabatanPegawai;
+	public void setJabatan(List<JabatanModel> jabatan) {
+		this.jabatan = jabatan;
 	}
 		
 	
@@ -144,9 +157,10 @@ public class PegawaiModel implements Serializable {
 	public Set<JabatanModel> getJabatan() {
 		return this.jabatan;
 	}
-	*/
 	
-	/**
+	@OneToMany(mappedBy = "pegawai", fetch = FetchType.LAZY)
+	private List<JabatanPegawaiModel> listJabatanPegawai = new ArrayList<JabatanPegawaiModel>();
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_jabatan", referencedColumnName = "id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)

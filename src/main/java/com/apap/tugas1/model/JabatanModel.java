@@ -18,7 +18,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "jabatan")
-public class JabatanModel implements Serializable {
+public class JabatanModel implements Serializable, Comparable<JabatanModel> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +38,29 @@ public class JabatanModel implements Serializable {
 	@Column(name = "gaji_pokok", nullable = false)
 	private double gajiPokok;
 	
+	@Override
+	public int compareTo(JabatanModel other) {
+	    if (this.id < other.getId()) {
+	      return -1;
+	    } else if (this.id > other.getId()) {
+	      return 1;
+	    } else {
+	      return 0;
+	    }
+	 }
 	
-	@OneToMany(mappedBy = "jabatan", fetch = FetchType.LAZY)
-	private List<JabatanPegawaiModel> listJabatanPegawai = new ArrayList<JabatanPegawaiModel>();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof JabatanModel)) return false;
 
+        JabatanModel jabatan = (JabatanModel) o;
 
+        if (this.id != jabatan.getId()) return false;
+
+        return true;
+    }
+	
 	public long getId() {
 		return id;
 	}
@@ -81,17 +99,6 @@ public class JabatanModel implements Serializable {
 	public void setGajiPokok(double gajiPokok) {
 		this.gajiPokok = gajiPokok;
 	}
-
-
-	public List<JabatanPegawaiModel> getListJabatanPegawai() {
-		return listJabatanPegawai;
-	}
-
-
-	public void setListJabatanPegawai(List<JabatanPegawaiModel> listJabatanPegawai) {
-		this.listJabatanPegawai = listJabatanPegawai;
-	}
-
 	
 	
 	/**

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.tugas1.model.JabatanModel;
-import com.apap.tugas1.model.JabatanPegawaiModel;
 import com.apap.tugas1.service.JabatanService;
 
 //JabatanController
@@ -34,36 +33,33 @@ public class JabatanController {
 	}
 	
 	@RequestMapping(value = "/jabatan/view", method = RequestMethod.GET)
-	private String viewPegawai(@RequestParam("idJabatan") long id, Model model) {
+	private String viewJabatan(@RequestParam("idJabatan") long id, Model model) {
 		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
 		model.addAttribute("jabatan", jabatan);
 		return "view-jabatan";
 	}
 	
 	@RequestMapping(value = "/jabatan/hapus", method = RequestMethod.POST)
-	public String deletePilot(@RequestParam("idJabatan") long id, Model model) {
-		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
-		model.addAttribute("jabatan", jabatan);
-		for ( JabatanPegawaiModel jp : jabatan.getListJabatanPegawai() ) {
-			if (jp.getJabatan().getId() == jabatan.getId()) {
-				if (jp.getPegawai() == null) {
-					jabatanService.deleteJabatan(id);
-					return "hapus";
-				}
-			}
+	public String hapusJabatan(@RequestParam(value = "idJabatan", required = true) long idJabatan, Model model) {
+		try {
+			jabatanService.deleteJabatanById(idJabatan);
+			return "hapus";
 		}
-		return "error-jabatan-hapus";
+		catch (Exception ex) {
+			return "error-jabatan-hapus";
+		}
+		
 	}
 	
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.GET)
-	private String updatePilot(@RequestParam("idJabatan") long id, Model model) {
+	private String updateJabatan(@RequestParam("idJabatan") long id, Model model) {
 		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
 		model.addAttribute("jabatan", jabatan);
 		return "ubah-jabatan";
 	}
 	
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
-	private String updatePilotSubmit(@RequestParam("idJabatan") long id, @RequestParam("nama") String nama, @RequestParam("deskripsi") String deskripsi, @RequestParam("gajiPokok") double gajiPokok, Model model) {
+	private String updateJabatanSubmit(@RequestParam("idJabatan") long id, @RequestParam("nama") String nama, @RequestParam("deskripsi") String deskripsi, @RequestParam("gajiPokok") double gajiPokok, Model model) {
 		JabatanModel updatedJabatan = jabatanService.updateJabatan(id, nama, deskripsi, gajiPokok);
 		model.addAttribute("jabatan", updatedJabatan);
 		return "ubahan-jabatan";
