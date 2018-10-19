@@ -4,6 +4,7 @@ import com.apap.tugas1.model.JabatanModel;
 import com.apap.tugas1.repository.JabatanDb;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class JabatanServiceImpl implements JabatanService{
 	private JabatanDb jabatanDb;
 	
 	@Override
-	public JabatanModel getJabatanDetailById(long id) {
+	public Optional<JabatanModel> getJabatanDetailById(Long id) {
 		return jabatanDb.findById(id);
 	}
 	

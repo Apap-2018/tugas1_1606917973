@@ -8,39 +8,89 @@
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
 		
-		<h1 th:text="'Data Pegawai Termuda '"></h1>
+		<h1 th:text="'Data Pegawai Termuda'"></h1>
 		
-		<br>
+		<table>
+			<tr>
+				<td width="200" height="50">NIP</td>
+				<td th:text="${pegawaiTermuda.nip}"></td>
+			</tr>
+			<tr>
+				<td height="50">Nama</td>
+				<td th:text="${pegawaiTermuda.nama}"></td>
+			</tr>
+			<tr>
+				<td height="50">Tempat Lahir</td>
+				<td th:text="${pegawaiTermuda.tempatLahir}"></td>
+			</tr>
+			<tr>
+				<td height="50">Tanggal Lahir</td>
+				<td th:text="${pegawaiTermuda.tanggalLahir}"></td>
+			</tr>
+			<tr>
+				<td height="50">Tahun Masuk</td>
+				<td th:text="${pegawaiTermuda.tahunMasuk}"></td>
+			</tr>
+			<tr>
+				<td height="50">Nama Instansi</td>
+				<td th:text="${namaInstansiPegawaiTermuda}"></td>
+			</tr>
+			<tr>
+				<td style="vertical-align: top; text-align: left;" height="50">Jabatan</td>
+				<td style="vertical-align: top;">
+					<span th:each="jabatan : ${setJabatanTermuda}">
+						<p th:text="${jabatan.nama}"></p>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td height="50">Gaji</td>
+				<td th:text="${gajiTermuda}"></td>
+			</tr>
+		</table>
 		
-		<h5 th:text="'NIP: ' + ${pegawaiTermuda.nip}"></h5>
-		<h5 th:text="'Nama: ' + ${pegawaiTermuda.nama}"></h5>
-		<h5 th:text="'Tempat Lahir: ' + ${pegawaiTermuda.tempatLahir}"></h5>
-		<h5 th:text="'Tanggal Lahir: ' + ${pegawaiTermuda.tanggalLahir}"></h5>
-		<h5 th:text="'Tahun Masuk: ' + ${pegawaiTermuda.tahunMasuk}"></h5>
-		<h5 th:text="'Nama Instansi: ' + ${pegawaiTermuda.instansi.nama}"></h5>
-		
-		<div th:each="jabatanPegawai : ${pegawaiTermuda.listJabatanPegawai}">
-			<h5 th:if="${jabatanPegawai.pegawai.id} == ${pegawaiTermuda.id}" th:text="'Jabatan: ' + ${jabatanPegawai.jabatan.nama}"></h5>
-			<h5 th:if="${jabatanPegawai.pegawai.id} == ${pegawaiTermuda.id}" th:text="'Gaji: ' + ${jabatanPegawai.jabatan.gajiPokok}"></h5>
-		</div>
-	
 		<hr>
 		
-		<h1 th:text="'Data Pegawai Tertua '"></h1>
+		<h1 th:text="'Data Pegawai Tertua'"></h1>
 		
-		<br>
-		
-		<h5 th:text="'NIP: ' + ${pegawaiTertua.nip}"></h5>
-		<h5 th:text="'Nama: ' + ${pegawaiTertua.nama}"></h5>
-		<h5 th:text="'Tempat Lahir: ' + ${pegawaiTertua.tempatLahir}"></h5>
-		<h5 th:text="'Tanggal Lahir: ' + ${pegawaiTertua.tanggalLahir}"></h5>
-		<h5 th:text="'Tahun Masuk: ' + ${pegawaiTertua.tahunMasuk}"></h5>
-		<h5 th:text="'Nama Instansi: ' + ${pegawaiTertua.instansi.nama}"></h5>
-		
-		<div th:each="jabatanPegawai : ${pegawaiTertua.listJabatanPegawai}">
-			<h5 th:if="${jabatanPegawai.pegawai.id} == ${pegawaiTertua.id}" th:text="'Jabatan: ' + ${jabatanPegawai.jabatan.nama}"></h5>
-			<h5 th:if="${jabatanPegawai.pegawai.id} == ${pegawaiTertua.id}" th:text="'Gaji: ' + ${jabatanPegawai.jabatan.gajiPokok}"></h5>
-		</div>
+		<table>
+			<tr>
+				<td width="200" height="50">NIP</td>
+				<td th:text="${pegawaiTertua.nip}"></td>
+			</tr>
+			<tr>
+				<td height="50">Nama</td>
+				<td th:text="${pegawaiTertua.nama}"></td>
+			</tr>
+			<tr>
+				<td height="50">Tempat Lahir</td>
+				<td th:text="${pegawaiTertua.tempatLahir}"></td>
+			</tr>
+			<tr>
+				<td height="50">Tanggal Lahir</td>
+				<td th:text="${pegawaiTertua.tanggalLahir}"></td>
+			</tr>
+			<tr>
+				<td height="50">Tahun Masuk</td>
+				<td th:text="${pegawaiTertua.tahunMasuk}"></td>
+			</tr>
+			<tr>
+				<td height="50">Nama Instansi</td>
+				<td th:text="${namaInstansiPegawaiTertua}"></td>
+			</tr>
+			<tr>
+				<td style="vertical-align: top; text-align: left;" height="50">Jabatan</td>
+				<td style="vertical-align: top;">
+					<span th:each="jabatan : ${setJabatanTertua}">
+						<p th:text="${jabatan.nama}"></p>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td height="50">Gaji</td>
+				<td th:text="${gajiTertua}"></td>
+			</tr>
+		</table>
 		
 	</body>
 </html>

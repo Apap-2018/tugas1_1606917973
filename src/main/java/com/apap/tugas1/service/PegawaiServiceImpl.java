@@ -25,7 +25,7 @@ public class PegawaiServiceImpl implements PegawaiService {
 
 	@Override
 	public PegawaiModel getPegawaiDetailByNip(String nip) {
-		return pegawaiDb.findByNip(nip);
+		return pegawaiDb.findByNip(nip).get(0);
 	}
 	
 	@Override
@@ -114,7 +114,7 @@ public class PegawaiServiceImpl implements PegawaiService {
 	
 	@Override
 	public void updatePegawai(String nip, PegawaiModel newPegawai) {
-		PegawaiModel oldPegawai = pegawaiDb.findByNip(nip);
+		PegawaiModel oldPegawai = pegawaiDb.findByNip(nip).get(0);
 		int pegawaiKe = 1;
 		
 		String pattern = "dd-MM-yy";
@@ -131,7 +131,6 @@ public class PegawaiServiceImpl implements PegawaiService {
 					pegawaiKe = (int) (Long.parseLong(oldPegawai.getNip())%100);
 				}
 				else {
-					System.out.println("kok masuk sini");
 					oldPegawai.setTahunMasuk(newPegawai.getTahunMasuk());
 					List<PegawaiModel> listPegawaiNIPMirip = this.getPegawaiByInstansiAndTanggalLahirAndTahunMasuk(oldPegawai.getInstansi(), oldPegawai.getTanggalLahir(), oldPegawai.getTahunMasuk());
 					if (!listPegawaiNIPMirip.isEmpty()) {

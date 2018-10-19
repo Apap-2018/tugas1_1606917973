@@ -8,8 +8,8 @@
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
 		
-		<h3>Ubah Jabatan</h3>
-		
+		<h1>Ubah Jabatan</h1>
+		<br>
 		<form th:action="@{/jabatan/ubah}" method="POST">
 			<input type="hidden" th:value="${jabatan.id}" name="idJabatan"/>
 			Nama: <br> <input type="text" name="nama" th:value="${jabatan.nama}"/>

@@ -76,13 +76,13 @@ public class PegawaiController {
 	
 	@RequestMapping(value = "/pegawai/termuda-tertua", method = RequestMethod.GET)
 	private String viewPegawai(@RequestParam("idInstansi") long id, Model model) {
-		InstansiModel instansi = instansiService.getInstansiDetailById(id);
+		InstansiModel instansi = instansiService.getInstansiDetailById(id).get();
 		List<PegawaiModel> listPegawai = instansi.getListPegawai();
 		
-		PegawaiModel pegawaiTermuda = listPegawai.get(1);
+		PegawaiModel pegawaiTermuda = listPegawai.get(0);
 		int umurPegawaiTermuda = LocalDate.now().getYear() - pegawaiTermuda.getTanggalLahir().getYear();
 		
-		PegawaiModel pegawaiTertua = listPegawai.get(1);
+		PegawaiModel pegawaiTertua = listPegawai.get(0);
 		int umurPegawaiTertua = LocalDate.now().getYear() - pegawaiTertua.getTanggalLahir().getYear();
 		
 		for (PegawaiModel pegawai : listPegawai) {
@@ -95,9 +95,30 @@ public class PegawaiController {
 			}
 		}
 		
-		model.addAttribute("instansi", instansi);
 		model.addAttribute("pegawaiTermuda", pegawaiTermuda);
+		
+		InstansiModel instansiPegawaiTermuda = pegawaiTermuda.getInstansi();
+		String namaInstansiPegawaiTermuda = instansiPegawaiTermuda.getNama() + " - " + instansiPegawaiTermuda.getProvinsi().getNama();
+		model.addAttribute("namaInstansiPegawaiTermuda", namaInstansiPegawaiTermuda);
+		
+		List<JabatanModel> setJabatanTermuda = pegawaiTermuda.getJabatan();
+		model.addAttribute("setJabatanTermuda", setJabatanTermuda);
+		
+		String gajiTermuda = "Rp" + Integer.toString(pegawaiTermuda.getGaji());
+		model.addAttribute("gajiTermuda", gajiTermuda);
+		
 		model.addAttribute("pegawaiTertua", pegawaiTertua);
+		
+		InstansiModel instansiPegawaiTertua = pegawaiTertua.getInstansi();
+		String namaInstansiPegawaiTertua = instansiPegawaiTertua.getNama() + " - " + instansiPegawaiTertua.getProvinsi().getNama();
+		model.addAttribute("namaInstansiPegawaiTertua", namaInstansiPegawaiTertua);
+		
+		List<JabatanModel> setJabatanTertua = pegawaiTertua.getJabatan();
+		model.addAttribute("setJabatanTertua", setJabatanTertua);
+		
+		String gajiTertua = "Rp" + Integer.toString(pegawaiTertua.getGaji());
+		model.addAttribute("gajiTertua", gajiTertua);
+		
 		return "view-pegawai-termuda-tertua";
 	}
 	
@@ -197,11 +218,11 @@ public class PegawaiController {
 		
 		List<PegawaiModel> hasilPencarian = null;
 		if (provinsiId.isPresent()) {
-			provinsi = provinsiService.getProvinsiDetailById(provinsiId.get());
+			provinsi = provinsiService.getProvinsiDetailById(provinsiId.get()).get();
 			if (instansiId.isPresent()) {
-				instansi = instansiService.getInstansiDetailById(instansiId.get());	
+				instansi = instansiService.getInstansiDetailById(instansiId.get()).get();	
 				if (jabatanId.isPresent()) {
-					jabatan = jabatanService.getJabatanDetailById(jabatanId.get());	
+					jabatan = jabatanService.getJabatanDetailById(jabatanId.get()).get();	
 					hasilPencarian = pegawaiService.getPegawaiByInstansiAndJabatan(instansi, jabatan);
 				}
 				else {
@@ -209,7 +230,7 @@ public class PegawaiController {
 				}
 			}
 			else if (jabatanId.isPresent()) {
-				jabatan = jabatanService.getJabatanDetailById(jabatanId.get());	
+				jabatan = jabatanService.getJabatanDetailById(jabatanId.get()).get();	
 				hasilPencarian = pegawaiService.getPegawaiByProvinsiAndJabatan(provinsiId.get(), jabatan);
 			}
 			else {
@@ -218,7 +239,7 @@ public class PegawaiController {
 		}
 		else {
 			if (jabatanId.isPresent()) {
-				jabatan = jabatanService.getJabatanDetailById(jabatanId.get());	
+				jabatan = jabatanService.getJabatanDetailById(jabatanId.get()).get();	
 				hasilPencarian = pegawaiService.getPegawaiByJabatan(jabatan);
 			}
 		}

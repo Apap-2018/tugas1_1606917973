@@ -21,9 +21,5 @@ public interface PegawaiService {
 	List<PegawaiModel> getPegawaiByProvinsiAndJabatan(Long provinsiId, JabatanModel jabatan);
 	List<PegawaiModel> getPegawaiByJabatan(JabatanModel jabatan);
 	
-	/**
-	PegawaiModel deletePegawai(long id);
-	PegawaiModel updatePegawai(long id, String name, String flyHour);
-	*/
 }
 

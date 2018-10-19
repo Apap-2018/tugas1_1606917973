@@ -34,7 +34,7 @@ public class JabatanController {
 	
 	@RequestMapping(value = "/jabatan/view", method = RequestMethod.GET)
 	private String viewJabatan(@RequestParam("idJabatan") long id, Model model) {
-		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(id).get();
 		model.addAttribute("jabatan", jabatan);
 		return "view-jabatan";
 	}
@@ -53,7 +53,7 @@ public class JabatanController {
 	
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.GET)
 	private String updateJabatan(@RequestParam("idJabatan") long id, Model model) {
-		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(id).get();
 		model.addAttribute("jabatan", jabatan);
 		return "ubah-jabatan";
 	}

@@ -32,7 +32,7 @@ public class InstansiModel implements Serializable {
 	private String deskripsi;
 	
 	@OneToMany(mappedBy = "instansi", fetch = FetchType.LAZY)
-	private List<PegawaiModel> listPegawai = new ArrayList<PegawaiModel>();
+	private List<PegawaiModel> listPegawai;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_provinsi", referencedColumnName = "id", nullable = false)

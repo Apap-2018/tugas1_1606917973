@@ -34,7 +34,7 @@ public class ProvinsiModel implements Serializable {
 	private double presentaseTunjangan;
 	
 	@OneToMany(mappedBy = "provinsi", fetch = FetchType.LAZY)
-	private List<InstansiModel> listInstansi = new ArrayList<InstansiModel>();
+	private List<InstansiModel> listInstansi;
 
 	public int getId() {
 		return id;

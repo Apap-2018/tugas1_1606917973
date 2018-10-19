@@ -25,7 +25,7 @@
 	
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
-		<h3>Ubah Pegawai</h3>
+		<h1>Ubah Pegawai</h1>
 		<br>
 		<form th:action="@{/pegawai/ubah}" id="pegawaiForm" th:object="${pegawai}" method="POST">
 			<input type="hidden" name="nip" th:value="*{nip}"/>

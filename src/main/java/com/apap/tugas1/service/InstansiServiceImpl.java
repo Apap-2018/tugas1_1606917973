@@ -5,6 +5,7 @@ import com.apap.tugas1.model.ProvinsiModel;
 import com.apap.tugas1.repository.InstansiDb;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class InstansiServiceImpl implements InstansiService {
 	private InstansiDb instansiDb;
 	
 	@Override
-	public InstansiModel getInstansiDetailById(long id) {
+	public Optional<InstansiModel> getInstansiDetailById(Long id) {
 		return instansiDb.findById(id);
 	}
 	
