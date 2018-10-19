@@ -9,11 +9,10 @@ public interface JabatanService {
 	void addJabatan(JabatanModel jabatan);
 	JabatanModel getJabatanDetailById(long id);
 	List<JabatanModel> getAll();
+	JabatanModel updateJabatan(long id, String nama, String deskripsi, double gajiPokok);
 	/**
-	PilotModel getPilotDetailByLicenseNumber(String licenseNumber);
 	PilotModel deletePilot(long id);
-	PilotModel updatePilot(long id, String name, String flyHour);
 	*/
-
+	
 }
 

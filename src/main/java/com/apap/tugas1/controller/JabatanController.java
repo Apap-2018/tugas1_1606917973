@@ -25,7 +25,7 @@ public class JabatanController {
 	@RequestMapping(value = "/jabatan/tambah", method = RequestMethod.GET)
 	private String add(Model model) {
 		model.addAttribute("pilot", new JabatanModel());
-		return "tambahJabatan";
+		return "tambah-jabatan";
 	}
 	
 	@RequestMapping(value = "/jabatan/tambah", method = RequestMethod.POST)
@@ -42,33 +42,27 @@ public class JabatanController {
 	}
 	
 	/**
-	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
-	private String viewPilot(@RequestParam("licenseNumber") String licenseNumber, Model model) {
-		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		
-		model.addAttribute("pilot", pilot);
-		return "view-pilot";
-	}
 	
 	@RequestMapping(value = "/pilot/delete/{id}", method = RequestMethod.GET)
 	public String deletePilot(@PathVariable(value = "id") long id, Model model) {
 		pilotService.deletePilot(id);
 		return "delete";
 	}
-	
-	@RequestMapping(value = "/pilot/update/{id}", method = RequestMethod.GET)
-	private String updatePilot(@PathVariable(value = "id") long id, Model model) {
-		PilotModel pilot = pilotService.getPilotDetailById(id);
-		model.addAttribute("pilot", pilot);
-		return "update-pilot";
-	}
-	
-	@RequestMapping(value = "/pilot/update", method = RequestMethod.POST)
-	private String updatePilotSubmit(@RequestParam("id") long id, @RequestParam("name") String name, @RequestParam("flyHour") String flyHour, Model model) {
-		PilotModel updatedPilot = pilotService.updatePilot(id, name, flyHour);
-		model.addAttribute("pilot", updatedPilot);
-		return "updated-pilot";
-	}
 	*/
+	
+	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.GET)
+	private String updatePilot(@RequestParam("idJabatan") long id, Model model) {
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
+		model.addAttribute("jabatan", jabatan);
+		return "ubah-jabatan";
+	}
+	
+	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
+	private String updatePilotSubmit(@RequestParam("idJabatan") long id, @RequestParam("nama") String nama, @RequestParam("deskripsi") String deskripsi, @RequestParam("gajiPokok") double gajiPokok, Model model) {
+		JabatanModel updatedJabatan = jabatanService.updateJabatan(id, nama, deskripsi, gajiPokok);
+		model.addAttribute("jabatan", updatedJabatan);
+		return "ubahan-jabatan";
+	}
+	
 	
 }

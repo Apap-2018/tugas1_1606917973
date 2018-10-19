@@ -47,14 +47,16 @@ public class JabatanServiceImpl implements JabatanService{
 		pilotDb.delete(pilotDb.findById(id));
 		return deleted;
 	}
-
+	*/
+	
 	@Override
-	public PilotModel updatePilot(long id, String name, String flyHour) {
-		pilotDb.findById(id).setName(name);
-		pilotDb.findById(id).setFlyHour(flyHour);
-		PilotModel updated = pilotDb.findById(id);
+	public JabatanModel updateJabatan(long id, String nama, String deskripsi, double gajiPokok) {
+		jabatanDb.findById(id).setNama(nama);
+		jabatanDb.findById(id).setDeskripsi(deskripsi);
+		jabatanDb.findById(id).setGajiPokok(gajiPokok);
+		JabatanModel updated = jabatanDb.findById(id);
 		return updated;
 	}
-	*/
+	
 	
 }

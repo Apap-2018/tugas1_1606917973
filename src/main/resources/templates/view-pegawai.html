@@ -23,13 +23,10 @@
 			<h5 th:if="${referensi.pegawai.id} == ${pegawai.id}" th:text="'Jabatan: ' + ${referensi.jabatan.nama}"></h5>
 			<h5 th:if="${referensi.pegawai.id} == ${pegawai.id}" th:text="'Gaji: ' + ${referensi.jabatan.gajiPokok}"></h5>
 		</div>
-		
-		
-		
+	
 		<form th:action="@{/}">
-			<button type="submit">Ubah</button>
+			<button type="submit" class="btn btn-primary">Ubah</button>
 		</form>
-		
 		
 	</body>
 </html>
