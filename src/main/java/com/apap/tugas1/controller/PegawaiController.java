@@ -1,6 +1,8 @@
 package com.apap.tugas1.controller;
 
+import com.apap.tugas1.model.JabatanModel;
 import com.apap.tugas1.model.PegawaiModel;
+import com.apap.tugas1.service.JabatanService;
 import com.apap.tugas1.service.PegawaiService;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -23,8 +25,13 @@ public class PegawaiController {
 	@Autowired
 	private PegawaiService pegawaiService;
 	
+	@Autowired
+	private JabatanService jabatanService;
+	
 	@RequestMapping("/")
-	private String home() {
+	private String home(Model model) {
+		List<JabatanModel> semuaJabatan = jabatanService.getAll();
+		model.addAttribute("semuaJabatan", semuaJabatan);
 		return "home";
 	}
 	

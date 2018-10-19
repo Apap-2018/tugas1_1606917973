@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.tugas1.model.JabatanModel;
+import com.apap.tugas1.model.PegawaiModel;
 import com.apap.tugas1.service.JabatanService;
 
 //JabatanController
@@ -31,6 +32,13 @@ public class JabatanController {
 	private String addJabatanSubmit(@ModelAttribute JabatanModel jabatan) {
 		jabatanService.addJabatan(jabatan);
 		return "tambah";
+	}
+	
+	@RequestMapping(value = "/jabatan/view", method = RequestMethod.GET)
+	private String viewPegawai(@RequestParam("idJabatan") long id, Model model) {
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
+		model.addAttribute("jabatan", jabatan);
+		return "view-jabatan";
 	}
 	
 	/**

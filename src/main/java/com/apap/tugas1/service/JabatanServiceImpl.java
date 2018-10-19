@@ -22,15 +22,22 @@ public class JabatanServiceImpl implements JabatanService{
 	public PilotModel getPilotDetailByLicenseNumber(String licenseNumber) {
 		return pilotDb.findByLicenseNumber(licenseNumber);
 	}
-	
-	public PilotModel getPilotDetailById(long id) {
-		return pilotDb.findById(id);
-	}
 	*/
+	
+	public JabatanModel getJabatanDetailById(long id) {
+		return jabatanDb.findById(id);
+	}
+	
 	
 	@Override
 	public void addJabatan(JabatanModel jabatan) {
 		jabatanDb.save(jabatan);
+	}
+	
+	@Override
+	public List<JabatanModel> getAll() {
+		List<JabatanModel> semuaJabatan = jabatanDb.findAll();
+		return semuaJabatan;
 	}
 	
 	/**

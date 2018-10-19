@@ -7,9 +7,10 @@ import com.apap.tugas1.model.JabatanModel;
 
 public interface JabatanService {
 	void addJabatan(JabatanModel jabatan);
+	JabatanModel getJabatanDetailById(long id);
+	List<JabatanModel> getAll();
 	/**
 	PilotModel getPilotDetailByLicenseNumber(String licenseNumber);
-	PilotModel getPilotDetailById(long id);
 	PilotModel deletePilot(long id);
 	PilotModel updatePilot(long id, String name, String flyHour);
 	*/

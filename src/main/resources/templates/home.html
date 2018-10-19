@@ -10,7 +10,7 @@
 		 
 		<div class="container-fluid">
 			<h1>Sistem Informasi Kepegawaian</h1>
-			<h3>Selamat datang di Sistem Informasi Kepegawaian</h3>
+			<h5>Selamat datang di Sistem Informasi Kepegawaian</h5>
 			
 			<!-- 
 			<h2>Hello!</h2>
@@ -51,7 +51,27 @@
 				</div>
 			</div>
 			
-			<br>
+			<hr>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-header">
+							Lihat Detail Jabatan
+						</div>
+						<form th:action="@{/jabatan/view}" method="GET">
+							<div class="card-body">
+								<label class="card-text">Pilih Jabatan</label>
+								<select name="idJabatan">
+								  <option th:each="jabatan : ${semuaJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
+								</select>
+								<p></p>
+								<input type="submit" value="Submit" class="btn btn-primary">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 			
 			<!--  
 			<div class="row">
