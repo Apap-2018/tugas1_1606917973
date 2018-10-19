@@ -24,6 +24,7 @@ public class JabatanServiceImpl implements JabatanService{
 	}
 	*/
 	
+	@Override
 	public JabatanModel getJabatanDetailById(long id) {
 		return jabatanDb.findById(id);
 	}

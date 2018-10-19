@@ -12,25 +12,6 @@
 			<h1>Sistem Informasi Kepegawaian</h1>
 			<h5>Selamat datang di Sistem Informasi Kepegawaian</h5>
 			
-			<!-- 
-			<h2>Hello!</h2>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="card">
-						<div class="card-header">
-							Tambah Pilot
-						</div>
-						<div class="card-body">
-							<p class="card-text">Fitur untuk menambah pilot</p>
-							<a class="btn btn-primary" th:href="@{/pilot/add}">Tambah</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<br>
-			-->
-			
 			<hr>
 			
 			<div class="row">
@@ -66,32 +47,34 @@
 								  <option th:each="jabatan : ${semuaJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
 								</select>
 								<p></p>
-								<input type="submit" value="Submit" class="btn btn-primary">
+								<button type="submit" class="btn btn-primary">Lihat</button>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
 			
-			<!--  
+			<hr>
+			
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card">
 						<div class="card-header">
-							Cari Flight Berdasarkan Id
+							Lihat Pegawai Termuda dan Tertua
 						</div>
-						<form th:action="@{/flight/view}" method="GET">
+						<form th:action="@{/pegawai/termuda-tertua}" method="GET">
 							<div class="card-body">
-								<label class="card-text">Id:</label>
-								<input type="text" name="id" class="form-control"/>
+								<label class="card-text">Pilih Instansi</label>
+								<select name="idInstansi">
+								  <option th:each="instansi : ${semuaInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}"></option>
+								</select>
 								<p></p>
-								<button type="submit" class="btn btn-primary">Cari</button>
+								<button type="submit" class="btn btn-primary">Lihat</button>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			-->
 			
 		</div>
 		

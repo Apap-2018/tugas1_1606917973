@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Detail Pegawai</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: navbar"></nav>
+		
+		<h1 th:text="'Data Pegawai Termuda '"></h1>
+		
+		<br>
+		
+		<h5 th:text="'NIP: ' + ${pegawaiTermuda.nip}"></h5>
+		<h5 th:text="'Nama: ' + ${pegawaiTermuda.nama}"></h5>
+		<h5 th:text="'Tempat Lahir: ' + ${pegawaiTermuda.tempatLahir}"></h5>
+		<h5 th:text="'Tanggal Lahir: ' + ${pegawaiTermuda.tanggalLahir}"></h5>
+		<h5 th:text="'Tahun Masuk: ' + ${pegawaiTermuda.tahunMasuk}"></h5>
+		<h5 th:text="'Nama Instansi: ' + ${pegawaiTermuda.instansi.nama}"></h5>
+		
+		<div th:each="jabatanPegawai : ${pegawaiTermuda.listJabatanPegawai}">
+			<h5 th:if="${jabatanPegawai.pegawai.id} == ${pegawaiTermuda.id}" th:text="'Jabatan: ' + ${jabatanPegawai.jabatan.nama}"></h5>
+			<h5 th:if="${jabatanPegawai.pegawai.id} == ${pegawaiTermuda.id}" th:text="'Gaji: ' + ${jabatanPegawai.jabatan.gajiPokok}"></h5>
+		</div>
+	
+		<hr>
+		
+		<h1 th:text="'Data Pegawai Tertua '"></h1>
+		
+		<br>
+		
+		<h5 th:text="'NIP: ' + ${pegawaiTertua.nip}"></h5>
+		<h5 th:text="'Nama: ' + ${pegawaiTertua.nama}"></h5>
+		<h5 th:text="'Tempat Lahir: ' + ${pegawaiTertua.tempatLahir}"></h5>
+		<h5 th:text="'Tanggal Lahir: ' + ${pegawaiTertua.tanggalLahir}"></h5>
+		<h5 th:text="'Tahun Masuk: ' + ${pegawaiTertua.tahunMasuk}"></h5>
+		<h5 th:text="'Nama Instansi: ' + ${pegawaiTertua.instansi.nama}"></h5>
+		
+		<div th:each="jabatanPegawai : ${pegawaiTertua.listJabatanPegawai}">
+			<h5 th:if="${jabatanPegawai.pegawai.id} == ${pegawaiTertua.id}" th:text="'Jabatan: ' + ${jabatanPegawai.jabatan.nama}"></h5>
+			<h5 th:if="${jabatanPegawai.pegawai.id} == ${pegawaiTertua.id}" th:text="'Gaji: ' + ${jabatanPegawai.jabatan.gajiPokok}"></h5>
+		</div>
+		
+	</body>
+</html>
