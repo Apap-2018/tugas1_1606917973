@@ -21,7 +21,8 @@
 			<button type="submit" class="btn btn-primary">Ubah</button>
 		</form>
 		
-		<form th:action="@{/}">
+		<form th:action="@{/jabatan/hapus}" method="POST">
+			<input type="hidden" th:value="${jabatan.id}" name="idJabatan"/>
 			<button type="submit" class="btn btn-primary">Hapus</button>
 		</form>
 		

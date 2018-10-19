@@ -40,14 +40,12 @@ public class JabatanServiceImpl implements JabatanService{
 		return semuaJabatan;
 	}
 	
-	/**
 	@Override
-	public PilotModel deletePilot(long id) {
-		PilotModel deleted = pilotDb.findById(id);
-		pilotDb.delete(pilotDb.findById(id));
+	public JabatanModel deleteJabatan(long id) {
+		JabatanModel deleted = jabatanDb.findById(id);
+		jabatanDb.delete(jabatanDb.findById(id));
 		return deleted;
 	}
-	*/
 	
 	@Override
 	public JabatanModel updateJabatan(long id, String nama, String deskripsi, double gajiPokok) {

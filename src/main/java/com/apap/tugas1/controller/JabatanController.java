@@ -4,13 +4,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.apap.tugas1.model.JabatanModel;
+import com.apap.tugas1.model.JabatanPegawaiModel;
 import com.apap.tugas1.model.PegawaiModel;
 import com.apap.tugas1.service.JabatanService;
 
@@ -41,14 +44,20 @@ public class JabatanController {
 		return "view-jabatan";
 	}
 	
-	/**
-	
-	@RequestMapping(value = "/pilot/delete/{id}", method = RequestMethod.GET)
-	public String deletePilot(@PathVariable(value = "id") long id, Model model) {
-		pilotService.deletePilot(id);
-		return "delete";
+	@RequestMapping(value = "/jabatan/hapus", method = RequestMethod.POST)
+	public String deletePilot(@RequestParam("idJabatan") long id, Model model) {
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
+		model.addAttribute("jabatan", jabatan);
+		for ( JabatanPegawaiModel jp : jabatan.getListJabatanPegawai() ) {
+			if (jp.getJabatan().getId() == jabatan.getId()) {
+				if (jp.getPegawai() == null) {
+					jabatanService.deleteJabatan(id);
+					return "hapus";
+				}
+			}
+		}
+		return "error-jabatan-hapus";
 	}
-	*/
 	
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.GET)
 	private String updatePilot(@RequestParam("idJabatan") long id, Model model) {
@@ -63,6 +72,6 @@ public class JabatanController {
 		model.addAttribute("jabatan", updatedJabatan);
 		return "ubahan-jabatan";
 	}
-	
+
 	
 }
