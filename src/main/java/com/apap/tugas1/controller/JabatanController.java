@@ -72,6 +72,13 @@ public class JabatanController {
 		model.addAttribute("jabatan", updatedJabatan);
 		return "ubahan-jabatan";
 	}
+	
+	@RequestMapping(value = "/jabatan/viewall", method = RequestMethod.GET)
+	private String viewAllJabatan(Model model) {
+		List<JabatanModel> semuaJabatan = jabatanService.getAll();
+		model.addAttribute("semuaJabatan", semuaJabatan);
+		return "viewall-jabatan";
+	}
 
 	
 }
