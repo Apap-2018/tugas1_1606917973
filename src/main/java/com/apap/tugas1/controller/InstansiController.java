@@ -20,17 +20,18 @@ import com.apap.tugas1.service.ProvinsiService;
 
 @Controller
 public class InstansiController {
-	@Autowired
-	private PegawaiService pegawaiService;
 	
 	@Autowired
 	private InstansiService instansiService;
 	
 	@Autowired
-	private ProvinsiService provinsiService;
+	private PegawaiService pegawaiService;
 	
 	@Autowired
 	private JabatanService jabatanService;
+	
+	@Autowired
+	private ProvinsiService provinsiService;
 	
 	@RequestMapping(value = "/instansi/getFromProvinsi", method = RequestMethod.GET)
 	@ResponseBody

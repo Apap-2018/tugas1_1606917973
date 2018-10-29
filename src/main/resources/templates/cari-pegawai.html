@@ -10,26 +10,27 @@
 		<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 		
-		<script>
+		<script th:inline="javascript">
 		$(document).ready( function () {
 			$('#searchResult').DataTable();
 			});
 		
 		$('#provinsi').change(
-				function() {
-					$.getJSON("/instansi/getFromProvinsi", {
-						provinsiId : $(this).val(),
-						ajax : 'true'
-						}, function(data) {
-							var html = '<option value="">Pilih Instansi</option>';
-							var len = data.length;
-							for ( var i = 0; i < len; i++) {
-								html += '<option value="' + data[i].id + '">'+ data[i].nama + '</option>';
-								}
-							html += '</option>';
-							$('#instansi').html(html);
-							});
-					});
+		     function() {
+		         $.getJSON("/instansi/getFromProvinsi", {
+		             provinsiId : $(this).val(),
+		             ajax : 'true'
+		         }, function(data) {
+		             var html = '<option value="">Pilih Instansi</option>';
+		             var len = data.length;
+		             for ( var i = 0; i < len; i++) {
+		                 html += '<option value="' + data[i].id + '">'
+		                         + data[i].nama + '</option>';
+		             }
+		             html += '</option>';
+		             $('#instansi').html(html);
+		         });
+		     });
 		</script>
 		
 	</head>
@@ -39,11 +40,11 @@
 		
 		<div style="margin-left: 20px; margin-right: 20px;">
 			<h1>Cari Pegawai</h1>
-			<br>
+			<hr>
 			<form th:action="@{/pegawai/cari}" id="pegawaiCariForm" method="get">
 				<table>
 					<tr>
-						<td height="50">Provinsi</td>
+						<td width="200" height="50">Provinsi</td>
 						<td>
 							<select  class="form-control" name="provinsiId" id="provinsi"form="pegawaiCariForm">
 						      <option disabled="disabled" selected="selected" >Pilih Provinsi</option>
@@ -62,7 +63,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td style="vertical-align: top; text-align: left;" height="50">Jabatan</td>
+						<td height="50">Jabatan</td>
 						<td>
 							<select class="form-control" name="jabatanId" id="jabatan" form="pegawaiCariForm">
 								<option disabled="disabled" selected="selected" >Pilih Jabatan</option>
@@ -72,7 +73,7 @@
 					</tr>
 				</table>
 				<br>
-				<input type="submit" value="Cari">
+				<input type="submit" class="btn btn-primary" value="Cari">
 			</form>
 			<br>
 			<h4 th:text="${provinsi} == null ? '' : ('Provinsi: ' + ${provinsi.nama})"></h4>

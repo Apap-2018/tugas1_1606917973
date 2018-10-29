@@ -7,24 +7,25 @@
 	</head>
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
-		
-		<h1 th:text="'Detail Jabatan - ' + ${jabatan.nama}"></h1>
-		
-		<br>
-		
-		<h5 th:text="'Nama: ' + ${jabatan.nama}"></h5>
-		<h5 th:text="'Deskripsi: ' + ${jabatan.deskripsi}"></h5>
-		<h5 th:text="'Gaji Pokok: ' + ${jabatan.gajiPokok}"></h5>
-		
-		<form th:action="@{/jabatan/ubah}" method="GET">
-			<input type="hidden" th:value="${jabatan.id}" name="idJabatan"/>
-			<button type="submit" class="btn btn-primary">Ubah</button>
-		</form>
-		
-		<form th:action="@{/jabatan/hapus}" method="POST">
-			<input type="hidden" th:value="${jabatan.id}" name="idJabatan"/>
-			<button type="submit" class="btn btn-primary">Hapus</button>
-		</form>
-		
+		<div style="margin-left: 20px; margin-right: 20px;">
+			<h1 th:text="'Detail Jabatan - ' + ${jabatan.nama}"></h1>
+			
+			<hr>
+			
+			<h5 th:text="'Nama: ' + ${jabatan.nama}"></h5>
+			<h5 th:text="'Deskripsi: ' + ${jabatan.deskripsi}"></h5>
+			<h5 th:text="'Gaji Pokok: ' + ${jabatan.gajiPokok}"></h5>
+			
+			<form style="margin-bottom: 10px; margin-top: 10px" th:action="@{/jabatan/ubah}" method="GET">
+				<input type="hidden" th:value="${jabatan.id}" name="idJabatan"/>
+				<button type="submit" class="btn btn-primary">Ubah</button>
+			</form>
+			
+			
+			<form th:action="@{/jabatan/hapus}" method="POST">
+				<input type="hidden" th:value="${jabatan.id}" name="idJabatan"/>
+				<button type="submit" class="btn btn-primary">Hapus</button>
+			</form>
+		</div>
 	</body>
 </html>

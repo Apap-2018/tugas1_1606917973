@@ -8,8 +8,10 @@
 	
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
-		<h2>Sukses!</h>
-		<p th:text="'Pegawai dengan NIP ' + ${pegawai.nip} + ' berhasil diubah'"></p>
+		<div style="margin-left: 20px; margin-right: 20px;">
+			<h2>Sukses!</h2>
+			<p th:text="'Pegawai dengan NIP ' + ${pegawai.nip} + ' berhasil diubah'"></p>
+		</div>
 	</body>
 
 </html>

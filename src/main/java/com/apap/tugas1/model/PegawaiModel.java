@@ -56,7 +56,7 @@ public class PegawaiModel implements Serializable {
 	@Column(name = "tahun_masuk", nullable = false)
 	private String tahunMasuk;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_instansi", referencedColumnName = "id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore

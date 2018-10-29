@@ -19,28 +19,28 @@
 	</head>
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
+		<div style="margin-left: 20px; margin-right: 20px;">
+			<h1 th:text="'Detail Semua Jabatan'"></h1>
+			
+			<hr>
+			
+			<table id="table_jabatan" class="display" style="width:100%">
+			    <thead>
+			        <tr>
+			            <th th:text="'Nama'"></th>
+			            <th th:text="'Deskripsi'"></th>
+			            <th th:text="'Gaji Pokok'"></th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr th:each="jabatan : ${semuaJabatan}">
+			            <td th:text="${jabatan.nama}"></td>
+			            <td th:text="${jabatan.deskripsi}"></td>
+			            <td th:text="${jabatan.gajiPokok}"></td>
+			        </tr>
+			    </tbody>
+			</table>
 		
-		<h1 th:text="'Detail Semua Jabatan'"></h1>
-		
-		<br>
-		
-		<table id="table_jabatan" class="display" style="width:100%">
-		    <thead>
-		        <tr>
-		            <th th:text="'Nama'"></th>
-		            <th th:text="'Deskripsi'"></th>
-		            <th th:text="'Gaji Pokok'"></th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		        <tr th:each="jabatan : ${semuaJabatan}">
-		            <td th:text="${jabatan.nama}"></td>
-		            <td th:text="${jabatan.deskripsi}"></td>
-		            <td th:text="${jabatan.gajiPokok}"></td>
-		        </tr>
-		    </tbody>
-		</table>
-		
-		
+		</div>
 	</body>
 </html>

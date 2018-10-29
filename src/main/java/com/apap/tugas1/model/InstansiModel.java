@@ -31,10 +31,10 @@ public class InstansiModel implements Serializable {
 	@Column(name = "deskripsi", nullable = false)
 	private String deskripsi;
 	
-	@OneToMany(mappedBy = "instansi", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "instansi", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PegawaiModel> listPegawai;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_provinsi", referencedColumnName = "id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
